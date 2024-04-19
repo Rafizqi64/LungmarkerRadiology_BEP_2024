@@ -37,7 +37,7 @@ Copy your .xlsx dataset into the same directory as the python scripts or adjust 
 ## Usage
 
 ### main.py
-'main.py' contains most of the evaluation and training procedures and acts as easy access to running your chosen models with a range of adjustments.
+'main.py' contains most of the evaluation and training procedures and acts as easy access to running and plotting your chosen models with a range of adjustments.
 ```bash
 python main.py
 ```
