@@ -24,15 +24,15 @@ for the classification of NSCLC from pulmonary nodules. The models include logis
 ### Setup
 Clone this repository to your local machine:
 ```bash
-git clone https://github.com/Rafizqi64/LungmarkerRadiology_BEP.git
-cd LungmarkerRadiology_BEP # Just make sure you are in the right directory 
+git clone https://github.com/Rafizqi64/LungmarkerRadiology_BEP_2024.git
+cd LungmarkerRadiology_BEP_2024 # Just make sure you are in the right directory 
 ```
 
 Install the required packages:
 ```bash
 pip install -r requirements.txt
 ```
-Copy your dataset into the directory
+Copy your .xlsx dataset into the same directory as the python scripts or adjust the filepath to the location of the dataset.
 
 ## Usage
 
