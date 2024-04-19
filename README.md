@@ -32,7 +32,7 @@ Install the required packages:
 ```bash
 pip install -r requirements.txt
 ```
-Copy your .xlsx dataset into the same directory as the python scripts or adjust the filepath to the location of the dataset.
+Copy your .xlsx dataset into the same directory as the python scripts or adjust the filepath in the code to the location of the dataset.
 
 ## Usage
 
