@@ -1,10 +1,10 @@
 
-# Predictive Modeling for Healthcare Data
+# Minimally Invasive Clinical Prediction Model for Small Pulmonary Nodules in Non Small Cell Lung Cancer Patients
 
 ## Project Overview
 This research evaluates the performance
 of ensemble models combining radiology based Brock and Herder models with liquid biopsy based models
-for the classification of NSCLC from pulmonary nodules. The models include logistic regression, decision trees, and ensemble methods that aim to predictspecific disease diagnoses and treatment outcomes.
+for the classification of NSCLC from pulmonary nodules. The models include logistic regression, decision trees, and ensemble methods that aim to give a risk assesment of NSCLC and treatment outcomes.
 
 ## Features
 - Data preprocessing and cleaning.
@@ -20,40 +20,42 @@ for the classification of NSCLC from pulmonary nodules. The models include logis
 - Python 3.6+
 - Pip package manager
 
+
 ### Setup
 Clone this repository to your local machine:
 ```bash
-git clone https://github.com/[your-username]/[your-repo].git
-cd [your-repo]
+git clone https://github.com/Rafizqi64/LungmarkerRadiology_BEP.git
+cd LungmarkerRadiology_BEP # Just make sure you are in the right directory 
 ```
 
 Install the required packages:
 ```bash
 pip install -r requirements.txt
 ```
+Copy your dataset into the directory
 
 ## Usage
 
 ### main.py
-main.py has most of the evaluation and training procedures. Simply comment and uncomment the lines of code to specify which model you want trained and evaluated.
+'main.py' contains most of the evaluation and training procedures and acts as easy access to running your chosen models with a range of adjustments.
 ```bash
 python main.py
 ```
-
 The script is divided into several sections, each handling a specific part of the machine learning pipeline:
 
 1. **Data Loading and Preprocessing**:
-   - Loads data from an Excel file.
+   - Loads data from an Excel file. ***MAKE SURE YOU ADJUST THIS***
    - Applies transformations and preprocessing such as one-hot encoding, log transformations, and scaling.
 
 2. **Feature Definition**:
    - Specifies the features for different models based on clinical indicators and imaging results.
    - Allows easy customization of features used in the models.
 
-3. **Model Initialization and Training**:
-   - Initializes different predictive models.
+3. **Model Manager Initialization and Training**:
+   - Adds different predictive models.
    - Configures models with specified features.
    - Trains models using cross-validation, 200x crossvalidation or SMOTE with PPV and NPV thresholds and evaluates their performance.
+   - Training is done in 1 go and is parsed to the voting classifier input models
 
 4. **Feature Selection**:
    - Applies various feature selection techniques to refine the model inputs.
@@ -62,20 +64,34 @@ The script is divided into several sections, each handling a specific part of th
 5. **Statistical Tests**:
    - Performs statistical comparisons between model predictions and guideline-based outcomes using tests such as the Mann-Whitney U test and Wilcoxon signed-rank test.
 
-6. **Model Evaluation**:
-   - Generates ROC curves, SHAP value plots, prediction histograms, and confusion matrices for each model.
-   - Provides detailed insights into model performance and feature importance.
+6. **Retrained Models**:
+   - Generates ROC curves, SHAP value plots, prediction histograms, and confusion matrices for the retrained models.
+   - Also prints the metrics and std.
 
-7. **Hybrid and Ensemble Models**:
-   - Constructs ensemble models to combine predictions from multiple models to improve accuracy.
+7. **Hybrid Models**:
+   - Plots the logistic regression ensemble models combining predictions from features and original model scores to improve performance.
+   - Uses the model manager to train the models
    - Evaluates ensemble models in the same detailed manner as individual models.
+     
+8. **Input Models**:
+   - Constructs voting classifier ensemble models to combine predictions from all retrained models added to the model manager.
+   - Uses the voting classifier class in 'ensemble_model.py' to train the model
+   - Evaluates ensemble models in the same detailed manner as individual models.
+
+9. **Output Models**:
+   - Plots the logistic regression ensemble models combining predictions from only model scores.
+   - Uses the model manager to train the models
+   - Evaluates ensemble models in the same detailed manner as individual models.
+   
+Simply comment and uncomment the lines of code to specify which model you want trained and evaluated.
 
 ### EDA.py
 
-The script is organized into a class `ModelEDA` that encapsulates all EDA functionalities and evaluation of original model metrics:
+The script is organized into a class `ModelEDA` that encapsulates all EDA functionalities and evaluation of original model metrics.  
+The structure is as follows:
 
 1. **Initialization and Data Loading**:
-   - Instantiates the class with a path to the dataset.
+   - Instantiates the class with a path to the dataset. ***MAKE SURE YOU ADJUST THIS***
    - Loads the dataset and initializes variables for analysis.
 
 2. **Distribution Analysis**:
@@ -91,6 +107,7 @@ The script is organized into a class `ModelEDA` that encapsulates all EDA functi
 
 5. **Model Score Evaluation**:
    - Evaluates original model scores using metrics such as accuracy, precision, recall, F1-score, and ROC AUC using cross-validation.
+Uncomment the functions you want to run and run the file.
 
 ### decisiontree.py
 
@@ -111,10 +128,11 @@ The script is organized into a class `DecisionTree` that encapsulates functional
 
 5. **Confusion Matrix Plotting**:
    - Visualizes confusion matrices to understand the true positive, false positive, true negative, and false negative rates.
+Uncomment the functions you want to run and run the file.
 
 ### data_preprocessing.py, model.py, herder_model.py and ensemble_model.py
-These scripts are called upon in main.py for preprocessing data, training and evaluating models, and plotting graphs.
-Documentation is given in the code itself.
+These scripts are called upon in 'main.py' for preprocessing data, training and evaluating models, and plotting graphs.
+Documentation is given in the code itself and is hopefully sufficient.
 
 ## Models Included
 ***Retrained Models*** (Utilizing feature selection on the original features)
@@ -142,5 +160,4 @@ Documentation is given in the code itself.
 
 
 ## Authors
-- **Rafi van Kruchten** - *Initial work* - [YourUsername](https://github.com/Rafizqi64)
-
+- **Rafi van Kruchten** - [Rafizqi64](https://github.com/Rafizqi64) - [Email](r.r.f.v.kruchten@student.tue.nl)
